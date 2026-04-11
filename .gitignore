@@ -1,0 +1,11 @@
+# Visual Studio temporary files
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Audio assets (if you don't want to track large binaries, but for university it's usually fine)
+# Assets/*.wav
