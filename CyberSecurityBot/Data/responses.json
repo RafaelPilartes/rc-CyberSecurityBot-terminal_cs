@@ -1,24 +1,88 @@
 {
   "responses": [
     {
-      "keywords": ["hello", "hi"],
-      "reply": "Hi there! How can I assist you today?"
+      "keywords": ["hello", "hi", "hey"],
+      "reply": "Hi there! I'm your Cybersecurity Awareness Bot. How can I assist you today?"
     },
     {
-      "keywords": ["password", "safe", "strong"],
-      "reply": "Use strong passwords with uppercase, lowercase, numbers, and symbols. Consider using a password manager."
+      "keywords": ["password", "safe", "strong", "pass"],
+      "reply": "Use strong passwords with uppercase, lowercase, numbers, and symbols. Avoid reusing passwords across sites. Consider using a password manager for better security!"
     },
     {
-      "keywords": ["phish", "email"],
-      "reply": "Be cautious of unsolicited emails asking for sensitive info. Always verify sender addresses."
+      "keywords": ["phish", "scam", "email"],
+      "reply": "Watch out for suspicious links or urgent requests in emails. Always double-check the sender’s address before clicking anything. Report phishing attempts immediately."
     },
     {
-      "keywords": ["update", "software"],
-      "reply": "Keep your OS and applications updated to patch vulnerabilities."
+      "keywords": ["update", "software", "patch"],
+      "reply": "Keep your operating system and apps updated regularly to protect against vulnerabilities and exploits."
     },
     {
-      "keywords": ["purpose", "help"],
-      "reply": "I'm your cybersecurity guide! Ask me anything related to staying safe online."
+      "keywords": ["purpose", "help", "function"],
+      "reply": "I’m here to teach you practical ways to stay safe online—from avoiding scams to securing devices and protecting personal data."
+    },
+    {
+      "keywords": ["wifi", "network", "public"],
+      "reply": "Avoid connecting to public Wi-Fi without a VPN. Public networks are vulnerable. If you must use one, limit sensitive activities like banking or shopping."
+    },
+    {
+      "keywords": ["backup", "save", "cloud"],
+      "reply": "Back up important files regularly—preferably both locally and on encrypted cloud storage. Ransomware attacks can lock your data permanently without backups."
+    },
+    {
+      "keywords": ["malware", "virus", "trojan"],
+      "reply": "Install reliable antivirus software and keep it active. Don’t download attachments or software from unknown sources."
+    },
+    {
+      "keywords": ["two-factor", "auth", "2fa"],
+      "reply": "Enable two-factor authentication wherever possible. It adds an extra layer of protection even if someone steals your password."
+    },
+    {
+      "keywords": ["social media", "privacy", "profile"],
+      "reply": "Review your privacy settings frequently. Limit who can see your posts and personal information. Be mindful of oversharing details like addresses or travel plans."
+    },
+    {
+      "keywords": ["encryption", "encrypt"],
+      "reply": "Encryption protects your data by converting it into unreadable code. Enable device encryption and use messaging apps that support end-to-end encryption."
+    },
+    {
+      "keywords": ["identity theft", "personal info"],
+      "reply": "Never share sensitive personal information unless you’re certain of the recipient’s legitimacy. Monitor your credit reports periodically."
+    },
+    {
+      "keywords": ["vpn", "virtual private network"],
+      "reply": "A Virtual Private Network (VPN) hides your IP address and encrypts traffic when browsing. Great for privacy on public connections!"
+    },
+    {
+      "keywords": ["cookies", "tracking"],
+      "reply": "Cookies track your browsing habits. Adjust browser settings to block third-party cookies or clear them regularly for better privacy."
+    },
+    {
+      "keywords": ["ransomware", "lock"],
+      "reply": "Ransomware locks your files until you pay money. Protect yourself by backing up data and avoiding suspicious downloads or links."
+    },
+    {
+      "keywords": ["firewall", "protect"],
+      "reply": "A firewall acts as a barrier between your computer and harmful internet traffic. Most systems come with built-in firewalls—make sure yours is enabled."
+    },
+    {
+      "keywords": ["browser", "secure", "internet"],
+      "reply": "Use reputable browsers and enable pop-up blockers. Disable unnecessary plugins and auto-run features to reduce risks."
+    },
+    {
+      "keywords": ["child", "kids", "online safety"],
+      "reply": "Educate children about safe internet practices. Use parental controls and discuss risks like chatting with strangers or sharing photos online."
+    },
+    {
+      "keywords": ["iot", "smart home", "device"],
+      "reply": "Change default login credentials on smart devices. Update firmware regularly. Place IoT devices behind a separate network when possible."
+    },
+    {
+      "keywords": ["cyberbullying", "harassment"],
+      "reply": "Report cyberbullying to platforms and authorities. Block offenders and preserve evidence. Speak to someone trusted if affected emotionally."
+    },
+    {
+      "keywords": ["exit", "quit", "bye"],
+      "reply": "Thanks for spending time learning about cybersecurity. Stay safe and vigilant online. See you next time!"
     }
   ]
 }
