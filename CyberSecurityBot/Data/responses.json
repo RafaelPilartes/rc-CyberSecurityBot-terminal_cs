@@ -1,0 +1,24 @@
+{
+  "responses": [
+    {
+      "keywords": ["hello", "hi"],
+      "reply": "Hi there! How can I assist you today?"
+    },
+    {
+      "keywords": ["password", "safe", "strong"],
+      "reply": "Use strong passwords with uppercase, lowercase, numbers, and symbols. Consider using a password manager."
+    },
+    {
+      "keywords": ["phish", "email"],
+      "reply": "Be cautious of unsolicited emails asking for sensitive info. Always verify sender addresses."
+    },
+    {
+      "keywords": ["update", "software"],
+      "reply": "Keep your OS and applications updated to patch vulnerabilities."
+    },
+    {
+      "keywords": ["purpose", "help"],
+      "reply": "I'm your cybersecurity guide! Ask me anything related to staying safe online."
+    }
+  ]
+}
