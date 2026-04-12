@@ -1,4 +1,5 @@
 ﻿using System.Media;
+using System;
 
 namespace CyberSecurityBot.Services
 {
@@ -8,13 +9,16 @@ namespace CyberSecurityBot.Services
         {
             try
             {
-                string path = @"Assets/greeting.wav";
-                SoundPlayer player = new SoundPlayer(path);
-                player.PlaySync();
+                string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "greeting.wav");
+
+                using (SoundPlayer player = new SoundPlayer(path))
+                {
+                    player.PlaySync();
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                System.Console.WriteLine("[!] Failed to play greeting sound.");
+                Console.WriteLine($"[!] Audio error: {ex.Message}");
             }
         }
     }

@@ -1,5 +1,8 @@
-﻿using CyberSecurityBot.Models;
+﻿using CyberSecurityBot.Constants;
+using CyberSecurityBot.Models;
+using CyberSecurityBot.Services;
 using CyberSecurityBot.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +12,7 @@ namespace CyberSecurityBot.Services
 {
     public class ChatbotService
     {
-        private readonly List<dynamic> _responses;
+        private List<dynamic> _responses;
         private User _currentUser;
 
         public ChatbotService()
@@ -19,8 +22,9 @@ namespace CyberSecurityBot.Services
 
         public void Start()
         {
-            AudioService.PlayGreetingSound();
             UiService.ShowHeader();
+            
+            AudioService.PlayGreetingSound();
 
             InitializeUser();
 
@@ -31,6 +35,7 @@ namespace CyberSecurityBot.Services
 
                 if (InputValidator.IsNullOrEmpty(userInput))
                 {
+                    UiService.PrintColoredMessage(BotResponses.InvalidInputResponse, ConsoleColor.Yellow);
                     continue;
                 }
 
@@ -50,7 +55,18 @@ namespace CyberSecurityBot.Services
             string name = Console.ReadLine();
             _currentUser = new User { Name = !string.IsNullOrWhiteSpace(name) ? name : "Guest" };
 
-            UiService.PrintColoredMessage($"\nWelcome {_currentUser.Name}! Let's learn about cybersecurity.\n", ConsoleColor.Green);
+            // Mensagem de boas-vindas personalizada
+            UiService.PrintColoredMessage($"\nWelcome, {_currentUser.Name}! Let's learn about cybersecurity.", ConsoleColor.Green);
+
+            // Instruções de uso e comandos
+            Console.WriteLine("-----------------------------------------------------------");
+            Console.WriteLine("💡 QUICK TIPS:");
+            Console.WriteLine("- You can ask about: Passwords, Phishing, or Safe Browsing.");
+            Console.WriteLine("- Typing 'exit' will close the program at any time.");
+            Console.WriteLine("-----------------------------------------------------------");
+
+            // Pequeno delay opcional para o usuário ler as instruções
+            System.Threading.Thread.Sleep(1000);
         }
 
         private void LoadResponses()
@@ -62,23 +78,28 @@ namespace CyberSecurityBot.Services
             }
 
             string jsonContent = File.ReadAllText(filePath);
+            dynamic jsonObj = JsonConvert.DeserializeObject(jsonContent);
+            _responses = jsonObj.responses.ToObject<List<dynamic>>();
         }
 
         private void ProcessUserQuery(string query)
         {
             foreach (var responseObj in _responses)
             {
-                string[] keywords = ((List<object>)responseObj.keywords).ToArray().Select(x => x.ToString()).ToArray();
+                string[] keywords = responseObj.keywords.ToObject<string[]>();
                 if (InputValidator.ContainsKeyword(query, keywords))
                 {
                     UiService.PrintColoredMessage(responseObj.reply.ToString(), ConsoleColor.Cyan);
                     return;
                 }
             }
+
+            UiService.PrintColoredMessage(BotResponses.InvalidInputResponse, ConsoleColor.Red);
         }
 
         private void EndSession()
         {
+            UiService.PrintColoredMessage(BotResponses.FarewellMessage, ConsoleColor.Magenta);
         }
     }
 }
