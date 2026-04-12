@@ -1,7 +1,9 @@
 ﻿using CyberSecurityBot.Models;
+using CyberSecurityBot.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace CyberSecurityBot.Services
 {
@@ -21,6 +23,25 @@ namespace CyberSecurityBot.Services
             UiService.ShowHeader();
 
             InitializeUser();
+
+            while (true)
+            {
+                Console.Write($"\n{_currentUser.Name}, ask me something: ");
+                string userInput = Console.ReadLine()?.Trim();
+
+                if (InputValidator.IsNullOrEmpty(userInput))
+                {
+                    continue;
+                }
+
+                if (userInput.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                {
+                    EndSession();
+                    break;
+                }
+
+                ProcessUserQuery(userInput.ToLower());
+            }
         }
 
         private void InitializeUser()
@@ -41,6 +62,23 @@ namespace CyberSecurityBot.Services
             }
 
             string jsonContent = File.ReadAllText(filePath);
+        }
+
+        private void ProcessUserQuery(string query)
+        {
+            foreach (var responseObj in _responses)
+            {
+                string[] keywords = ((List<object>)responseObj.keywords).ToArray().Select(x => x.ToString()).ToArray();
+                if (InputValidator.ContainsKeyword(query, keywords))
+                {
+                    UiService.PrintColoredMessage(responseObj.reply.ToString(), ConsoleColor.Cyan);
+                    return;
+                }
+            }
+        }
+
+        private void EndSession()
+        {
         }
     }
 }
