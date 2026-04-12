@@ -1,88 +1,277 @@
 {
   "responses": [
     {
-      "keywords": ["hello", "hi", "hey"],
-      "reply": "Hi there! I'm your Cybersecurity Awareness Bot. How can I assist you today?"
+      "keywords": ["hello", "hi", "hey", "how are you", "good morning", "good afternoon", "good evening"],
+      "replies": [
+        "Hi there! I'm ready to help you with cybersecurity questions.",
+        "Hello! Ask me anything about staying safe online.",
+        "Hey! How can I assist you with cybersecurity today?"
+      ],
+      "followups": [
+        "How can I create a strong password?",
+        "What is phishing?",
+        "Tell me about safe browsing."
+      ]
     },
     {
-      "keywords": ["password", "safe", "strong", "pass"],
-      "reply": "Use strong passwords with uppercase, lowercase, numbers, and symbols. Avoid reusing passwords across sites. Consider using a password manager for better security!"
+      "keywords": ["password", "passwords", "strong password", "password manager", "change password", "reset password"],
+      "replies": [
+        "Use a unique password for each account, with uppercase, lowercase, numbers and symbols. Consider using a password manager.",
+        "A strong password should be long (12+ characters) and random. Use a password manager to store them securely.",
+        "Never reuse passwords across different sites to reduce risk."
+      ],
+      "followups": [
+        "Should I use a password manager?",
+        "How long should a password be?",
+        "What makes a password strong?"
+      ]
     },
     {
-      "keywords": ["phish", "scam", "email"],
-      "reply": "Watch out for suspicious links or urgent requests in emails. Always double-check the sender’s address before clicking anything. Report phishing attempts immediately."
+      "keywords": ["phish", "phishing", "suspicious email", "email scam", "scam", "fraud", "fake email"],
+      "replies": [
+        "Phishing attempts often look like legitimate emails. Don't click links or download attachments from unknown senders.",
+        "If an email asks for credentials or money, verify by contacting the company directly (not via the email link).",
+        "Be cautious of urgent or threatening language in emails — it’s often a phishing tactic."
+      ],
+      "followups": [
+        "How can I identify a phishing email?",
+        "What should I do if I clicked a phishing link?",
+        "Are phone calls phishing too?"
+      ]
     },
     {
-      "keywords": ["update", "software", "patch"],
-      "reply": "Keep your operating system and apps updated regularly to protect against vulnerabilities and exploits."
+      "keywords": ["browse", "safe browsing", "safe web", "browser", "internet safety", "web security"],
+      "replies": [
+        "Keep your browser and extensions updated, avoid insecure sites (http), and use ad-blockers or script blockers if needed.",
+        "Use HTTPS sites, keep plugins updated, and be careful when downloading files.",
+        "Avoid clicking on pop-ups or suspicious ads while browsing."
+      ],
+      "followups": [
+        "What is HTTPS?",
+        "Should I use ad blockers?",
+        "How do I know if a website is safe?"
+      ]
     },
     {
-      "keywords": ["purpose", "help", "function"],
-      "reply": "I’m here to teach you practical ways to stay safe online—from avoiding scams to securing devices and protecting personal data."
+      "keywords": ["update", "software update", "patch", "security update", "system update"],
+      "replies": [
+        "Keep your operating system and software up to date to patch security vulnerabilities.",
+        "Enable automatic updates whenever possible to stay protected.",
+        "Outdated software is a common entry point for attackers."
+      ],
+      "followups": [
+        "How do I enable automatic updates?",
+        "What happens if I don’t update?",
+        "Are updates safe to install?"
+      ]
     },
     {
-      "keywords": ["wifi", "network", "public"],
-      "reply": "Avoid connecting to public Wi-Fi without a VPN. Public networks are vulnerable. If you must use one, limit sensitive activities like banking or shopping."
+      "keywords": ["two factor", "2fa", "two-factor authentication", "multi-factor authentication", "mfa", "authentication"],
+      "replies": [
+        "Two-factor authentication adds an extra layer of security beyond just a password.",
+        "Use authenticator apps or hardware tokens instead of SMS for better security.",
+        "Enable 2FA on all accounts that support it to reduce risk of compromise."
+      ],
+      "followups": [
+        "How do I set up 2FA?",
+        "Is SMS 2FA safe?",
+        "What if I lose my 2FA device?"
+      ]
     },
     {
-      "keywords": ["backup", "save", "cloud"],
-      "reply": "Back up important files regularly—preferably both locally and on encrypted cloud storage. Ransomware attacks can lock your data permanently without backups."
+      "keywords": ["wifi", "public wifi", "wifi security", "hotspot", "network security"],
+      "replies": [
+        "Avoid using public Wi-Fi for sensitive transactions unless you use a VPN.",
+        "Make sure your home Wi-Fi uses WPA3 or WPA2 encryption with a strong password.",
+        "Disable automatic connection to open Wi-Fi networks."
+      ],
+      "followups": [
+        "What is a VPN?",
+        "How do I secure my home Wi-Fi?",
+        "Is public Wi-Fi dangerous?"
+      ]
     },
     {
-      "keywords": ["malware", "virus", "trojan"],
-      "reply": "Install reliable antivirus software and keep it active. Don’t download attachments or software from unknown sources."
+      "keywords": ["malware", "virus", "trojan", "spyware", "ransomware", "malicious software"],
+      "replies": [
+        "Use reputable antivirus software and keep it updated.",
+        "Don’t open attachments or links from unknown sources to avoid malware infections.",
+        "Regularly back up your data to recover from ransomware attacks."
+      ],
+      "followups": [
+        "How do I remove malware?",
+        "What is ransomware?",
+        "Can antivirus software detect all threats?"
+      ]
     },
     {
-      "keywords": ["two-factor", "auth", "2fa"],
-      "reply": "Enable two-factor authentication wherever possible. It adds an extra layer of protection even if someone steals your password."
+      "keywords": ["social engineering", "scam call", "phone scam", "imposter", "fraud call"],
+      "replies": [
+        "Be skeptical of unsolicited calls asking for personal information.",
+        "Never give out passwords or financial info over the phone.",
+        "Verify caller identity independently before trusting."
+      ],
+      "followups": [
+        "How to recognize social engineering?",
+        "What to do if I get a scam call?",
+        "Are all unknown calls dangerous?"
+      ]
     },
     {
-      "keywords": ["social media", "privacy", "profile"],
-      "reply": "Review your privacy settings frequently. Limit who can see your posts and personal information. Be mindful of oversharing details like addresses or travel plans."
+      "keywords": ["backup", "data backup", "cloud backup", "restore data", "backup strategy"],
+      "replies": [
+        "Regularly back up important data to multiple locations, including offline storage.",
+        "Use encrypted backups to protect your data privacy.",
+        "Test your backups periodically to ensure they can be restored."
+      ],
+      "followups": [
+        "What is the best backup method?",
+        "How often should I back up?",
+        "Can cloud backups be hacked?"
+      ]
     },
     {
-      "keywords": ["encryption", "encrypt"],
-      "reply": "Encryption protects your data by converting it into unreadable code. Enable device encryption and use messaging apps that support end-to-end encryption."
+      "keywords": ["privacy", "data privacy", "personal data", "gdpr", "data protection"],
+      "replies": [
+        "Be cautious about what personal information you share online.",
+        "Review privacy settings on social media and apps regularly.",
+        "Understand your rights under data protection laws like GDPR."
+      ],
+      "followups": [
+        "How to protect my privacy online?",
+        "What is GDPR?",
+        "Can companies misuse my data?"
+      ]
     },
     {
-      "keywords": ["identity theft", "personal info"],
-      "reply": "Never share sensitive personal information unless you’re certain of the recipient’s legitimacy. Monitor your credit reports periodically."
+      "keywords": ["vpn", "virtual private network", "anonymous browsing", "secure connection"],
+      "replies": [
+        "A VPN encrypts your internet traffic and hides your IP address.",
+        "Use trusted VPN providers to protect your online privacy.",
+        "VPNs are especially useful on public Wi-Fi networks."
+      ],
+      "followups": [
+        "Is a VPN legal?",
+        "How to choose a VPN?",
+        "Does VPN slow down internet?"
+      ]
     },
     {
-      "keywords": ["vpn", "virtual private network"],
-      "reply": "A Virtual Private Network (VPN) hides your IP address and encrypts traffic when browsing. Great for privacy on public connections!"
+      "keywords": ["scam", "fraud", "fake website", "fake app", "counterfeit"],
+      "replies": [
+        "Always download apps from official stores like Google Play or Apple App Store.",
+        "Check website URLs carefully to avoid fake or phishing sites.",
+        "Report scams to authorities or platform providers."
+      ],
+      "followups": [
+        "How to spot fake websites?",
+        "What to do if I downloaded a fake app?",
+        "Can scams be prevented?"
+      ]
     },
     {
-      "keywords": ["cookies", "tracking"],
-      "reply": "Cookies track your browsing habits. Adjust browser settings to block third-party cookies or clear them regularly for better privacy."
+      "keywords": ["encryption", "encrypted", "secure communication", "ssl", "tls"],
+      "replies": [
+        "Encryption protects your data by making it unreadable to unauthorized parties.",
+        "Look for HTTPS and padlock icons in your browser for secure sites.",
+        "Use encrypted messaging apps for private conversations."
+      ],
+      "followups": [
+        "What is end-to-end encryption?",
+        "Is email encrypted?",
+        "How to encrypt files?"
+      ]
     },
     {
-      "keywords": ["ransomware", "lock"],
-      "reply": "Ransomware locks your files until you pay money. Protect yourself by backing up data and avoiding suspicious downloads or links."
+      "keywords": ["identity theft", "stolen identity", "account takeover", "fraudulent activity"],
+      "replies": [
+        "Monitor your accounts regularly for suspicious activity.",
+        "Use strong, unique passwords and 2FA to protect your accounts.",
+        "Report identity theft immediately to relevant authorities."
+      ],
+      "followups": [
+        "How to recover from identity theft?",
+        "What are signs of account takeover?",
+        "Can identity theft be prevented?"
+      ]
     },
     {
-      "keywords": ["firewall", "protect"],
-      "reply": "A firewall acts as a barrier between your computer and harmful internet traffic. Most systems come with built-in firewalls—make sure yours is enabled."
+      "keywords": ["safe download", "download security", "file safety", "malicious files"],
+      "replies": [
+        "Only download files from trusted sources.",
+        "Scan downloaded files with antivirus before opening.",
+        "Be wary of executable files from unknown senders."
+      ],
+      "followups": [
+        "How to verify file safety?",
+        "Are ZIP files safe?",
+        "What is a safe file extension?"
+      ]
     },
     {
-      "keywords": ["browser", "secure", "internet"],
-      "reply": "Use reputable browsers and enable pop-up blockers. Disable unnecessary plugins and auto-run features to reduce risks."
+      "keywords": ["social media", "social networks", "facebook", "twitter", "instagram", "privacy settings"],
+      "replies": [
+        "Review and adjust your privacy settings regularly on social media platforms.",
+        "Be cautious about what you share publicly.",
+        "Avoid clicking suspicious links shared on social media."
+      ],
+      "followups": [
+        "How to secure my Facebook account?",
+        "What should I avoid posting online?",
+        "Can social media accounts be hacked?"
+      ]
     },
     {
-      "keywords": ["child", "kids", "online safety"],
-      "reply": "Educate children about safe internet practices. Use parental controls and discuss risks like chatting with strangers or sharing photos online."
+      "keywords": ["email security", "secure email", "spam", "junk mail", "email filtering"],
+      "replies": [
+        "Use spam filters and mark suspicious emails as spam.",
+        "Avoid clicking links or downloading attachments from unknown senders.",
+        "Consider using encrypted email services for sensitive communication."
+      ],
+      "followups": [
+        "How to reduce spam?",
+        "Is email encryption easy to use?",
+        "What is phishing in email?"
+      ]
     },
     {
-      "keywords": ["iot", "smart home", "device"],
-      "reply": "Change default login credentials on smart devices. Update firmware regularly. Place IoT devices behind a separate network when possible."
+      "keywords": ["firewall", "network firewall", "windows firewall", "security firewall"],
+      "replies": [
+        "Keep your firewall enabled to block unauthorized access.",
+        "Configure firewall rules carefully to allow trusted apps.",
+        "Firewalls are a key part of layered security."
+      ],
+      "followups": [
+        "How to enable Windows Firewall?",
+        "Can firewall block viruses?",
+        "What is a hardware firewall?"
+      ]
     },
     {
-      "keywords": ["cyberbullying", "harassment"],
-      "reply": "Report cyberbullying to platforms and authorities. Block offenders and preserve evidence. Speak to someone trusted if affected emotionally."
+      "keywords": ["stay safe", "safe online", "online safety", "how to stay safe", "security tips", "how can i stay safe", "how can you stay safe"],
+      "replies": [
+        "To stay safe online, use strong passwords, enable two-factor authentication, and be cautious with emails and links.",
+        "Always keep your software updated, avoid suspicious websites, and use a VPN on public Wi-Fi.",
+        "Remember to back up your data regularly and never share personal information with untrusted sources."
+      ],
+      "followups": [
+        "What is two-factor authentication?",
+        "How do I create a strong password?",
+        "Should I use a VPN?"
+      ]
     },
     {
-      "keywords": ["exit", "quit", "bye"],
-      "reply": "Thanks for spending time learning about cybersecurity. Stay safe and vigilant online. See you next time!"
+      "keywords": ["security awareness", "cybersecurity tips", "online safety", "best practices"],
+      "replies": [
+        "Always stay informed about the latest cybersecurity threats.",
+        "Use strong passwords, enable 2FA, and keep software updated.",
+        "Be cautious with emails, links, and downloads."
+      ],
+      "followups": [
+        "What are the top cybersecurity tips?",
+        "How to stay safe online?",
+        "Can you give me daily security tips?"
+      ]
     }
   ]
 }

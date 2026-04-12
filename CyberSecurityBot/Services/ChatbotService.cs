@@ -1,19 +1,19 @@
-﻿using CyberSecurityBot.Constants;
-using CyberSecurityBot.Models;
-using CyberSecurityBot.Services;
-using CyberSecurityBot.Utilities;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
+using CyberSecurityBot.Models;
+using CyberSecurityBot.Utilities;
+using CyberSecurityBot.Constants;
 
 namespace CyberSecurityBot.Services
 {
     public class ChatbotService
     {
-        private List<dynamic> _responses;
+        private List<Response> _responses;
         private User _currentUser;
+        private readonly Random _rng = new Random();
 
         public ChatbotService()
         {
@@ -23,7 +23,7 @@ namespace CyberSecurityBot.Services
         public void Start()
         {
             UiService.ShowHeader();
-            
+
             AudioService.PlayGreetingSound();
 
             InitializeUser();
@@ -45,7 +45,7 @@ namespace CyberSecurityBot.Services
                     break;
                 }
 
-                ProcessUserQuery(userInput.ToLower());
+                ProcessUserQuery(userInput);
             }
         }
 
@@ -55,46 +55,70 @@ namespace CyberSecurityBot.Services
             string name = Console.ReadLine();
             _currentUser = new User { Name = !string.IsNullOrWhiteSpace(name) ? name : "Guest" };
 
-            // Mensagem de boas-vindas personalizada
             UiService.PrintColoredMessage($"\nWelcome, {_currentUser.Name}! Let's learn about cybersecurity.", ConsoleColor.Green);
 
-            // Instruções de uso e comandos
             Console.WriteLine("-----------------------------------------------------------");
             Console.WriteLine("💡 QUICK TIPS:");
             Console.WriteLine("- You can ask about: Passwords, Phishing, or Safe Browsing.");
-            Console.WriteLine("- Typing 'exit' will close the program at any time.");
+            Console.WriteLine("- Type 'exit' at any time to close the program.");
             Console.WriteLine("-----------------------------------------------------------");
 
-            // Pequeno delay opcional para o usuário ler as instruções
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(700);
         }
 
         private void LoadResponses()
         {
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "responses.json");
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "responses.json");
             if (!File.Exists(filePath))
             {
                 throw new FileNotFoundException("Could not find responses.json file.", filePath);
             }
 
             string jsonContent = File.ReadAllText(filePath);
-            dynamic jsonObj = JsonConvert.DeserializeObject(jsonContent);
-            _responses = jsonObj.responses.ToObject<List<dynamic>>();
+            var responsesFile = JsonConvert.DeserializeObject<ResponsesFile>(jsonContent);
+            _responses = responsesFile?.responses ?? new List<Response>();
         }
 
         private void ProcessUserQuery(string query)
         {
-            foreach (var responseObj in _responses)
+            // Build list of candidate responses with score
+            var candidates = new List<(Response resp, int score)>();
+
+            foreach (var resp in _responses)
             {
-                string[] keywords = responseObj.keywords.ToObject<string[]>();
-                if (InputValidator.ContainsKeyword(query, keywords))
+                int score = InputValidator.CountKeywordMatches(query, resp.keywords);
+                if (score > 0)
                 {
-                    UiService.PrintColoredMessage(responseObj.reply.ToString(), ConsoleColor.Cyan);
-                    return;
+                    candidates.Add((resp, score));
                 }
             }
 
-            UiService.PrintColoredMessage(BotResponses.InvalidInputResponse, ConsoleColor.Red);
+            if (candidates.Count == 0)
+            {
+                UiService.PrintColoredMessage(BotResponses.InvalidInputResponse, ConsoleColor.Red);
+                return;
+            }
+
+            // Choose highest score(s)
+            int maxScore = candidates.Max(c => c.score);
+            var topCandidates = candidates.Where(c => c.score == maxScore).Select(c => c.resp).ToList();
+
+            // If tie, optionally prefer candidate with more keywords matched overall, else random
+            Response chosen = topCandidates.Count == 1 ? topCandidates[0] : topCandidates[_rng.Next(topCandidates.Count)];
+
+            // Pick a random reply from chosen.replies
+            string reply = chosen.replies != null && chosen.replies.Length > 0
+                ? chosen.replies[_rng.Next(chosen.replies.Length)]
+                : BotResponses.InvalidInputResponse;
+
+            UiService.PrintColoredMessage(reply, ConsoleColor.Cyan);
+
+            // Optionally print a follow-up suggestion
+            if (chosen.followups != null && chosen.followups.Length > 0)
+            {
+                string follow = chosen.followups[_rng.Next(chosen.followups.Length)];
+                UiService.PrintColoredMessage("\nYou might also ask: " + follow, ConsoleColor.DarkGray);
+            }
         }
 
         private void EndSession()
