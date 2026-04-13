@@ -6,6 +6,10 @@ A modular C# Console Application designed to raise awareness about cybersecurity
 
 The **CyberSecurityBot** is a "semi-intelligent" assistant that provides users with tips on digital safety. It features a personalized interaction system, multimedia elements, and a scoring-based engine to understand user queries.
 
+## Youtube link
+
+https://youtu.be/Fhvue0KN16U
+
 ### Key Features
 
 - **Voice Greeting:** Plays a recorded `.wav` file upon launch.
