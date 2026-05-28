@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>CyberSecurityBot.Wpf</RootNamespace>
+    <AssemblyName>CyberSecurityBot.Wpf</AssemblyName>
+    <UseWPF>true</UseWPF>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CyberSecurityBot.Core\CyberSecurityBot.Core.csproj" />
+  </ItemGroup>
+</Project>

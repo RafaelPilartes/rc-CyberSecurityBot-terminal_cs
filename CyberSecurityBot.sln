@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberSecurityBot", "CyberSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberSecurityBot.Core", "CyberSecurityBot.Core\CyberSecurityBot.Core.csproj", "{A283094C-AC39-4A82-8E9C-8AF061BD2A07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberSecurityBot.Wpf", "CyberSecurityBot.Wpf\CyberSecurityBot.Wpf.csproj", "{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{A283094C-AC39-4A82-8E9C-8AF061BD2A07}.Release|x64.Build.0 = Release|Any CPU
 		{A283094C-AC39-4A82-8E9C-8AF061BD2A07}.Release|x86.ActiveCfg = Release|Any CPU
 		{A283094C-AC39-4A82-8E9C-8AF061BD2A07}.Release|x86.Build.0 = Release|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Debug|x64.Build.0 = Debug|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Debug|x86.Build.0 = Debug|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Release|x64.ActiveCfg = Release|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Release|x64.Build.0 = Release|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Release|x86.ActiveCfg = Release|Any CPU
+		{18AF0A49-0A7B-48A8-95E0-1ADF66C4834D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
