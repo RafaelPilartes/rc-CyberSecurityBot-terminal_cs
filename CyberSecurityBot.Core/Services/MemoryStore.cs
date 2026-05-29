@@ -65,22 +65,10 @@ namespace CyberSecurityBot.Core.Services
             if (string.IsNullOrWhiteSpace(input)) return false;
             bool changed = false;
 
-            var nameMatch = Regex.Match(input,
-                @"\b(?:my name is|i am|i'm|call me)\s+([A-Za-z][A-Za-z'\-]{1,30})\b",
-                RegexOptions.IgnoreCase);
-            if (nameMatch.Success)
-            {
-                string name = nameMatch.Groups[1].Value;
-                if (!string.Equals(name, Memory.Name, StringComparison.OrdinalIgnoreCase))
-                {
-                    Memory.Name = name;
-                    changed = true;
-                }
-            }
-
             var topicMatch = Regex.Match(input,
                 @"\b(?:interested in|care about|love|focus on)\s+([a-zA-Z\s]{2,30})\b",
                 RegexOptions.IgnoreCase);
+            bool topicStatementDetected = topicMatch.Success;
             if (topicMatch.Success)
             {
                 string candidate = topicMatch.Groups[1].Value.Trim().ToLowerInvariant();
@@ -90,6 +78,24 @@ namespace CyberSecurityBot.Core.Services
                 {
                     Memory.FavouriteTopic = match;
                     changed = true;
+                }
+            }
+
+            // Skip name capture when the input is a topic statement — otherwise "I'm interested in X"
+            // would match the "i'm" name pattern and capture "interested" as the user's name.
+            if (!topicStatementDetected)
+            {
+                var nameMatch = Regex.Match(input,
+                    @"\b(?:my name is|i am|i'm|call me)\s+([A-Za-z][A-Za-z'\-]{1,30})\b(?!\s+in\b)",
+                    RegexOptions.IgnoreCase);
+                if (nameMatch.Success)
+                {
+                    string name = nameMatch.Groups[1].Value;
+                    if (!string.Equals(name, Memory.Name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        Memory.Name = name;
+                        changed = true;
+                    }
                 }
             }
 
