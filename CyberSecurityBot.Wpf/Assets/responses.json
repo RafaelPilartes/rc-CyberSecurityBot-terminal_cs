@@ -1,0 +1,168 @@
+{
+  "responses": [
+    {
+      "topicKey": "greeting",
+      "keywords": ["hello", "hi", "hey", "how are you", "good morning", "good afternoon", "good evening"],
+      "replies": [
+        "Hi there! I'm ready to help you with cybersecurity questions.",
+        "Hello! Ask me anything about staying safe online.",
+        "Hey! How can I assist you with cybersecurity today?"
+      ],
+      "followups": [
+        "How can I create a strong password?",
+        "What is phishing?",
+        "Tell me about safe browsing."
+      ]
+    },
+    {
+      "topicKey": "password",
+      "keywords": ["password", "passwords", "strong password", "password manager", "change password", "reset password"],
+      "replies": [
+        "Use a unique password for each account, with uppercase, lowercase, numbers and symbols. A password manager makes this painless.",
+        "A strong password should be long (12+ characters) and random. Store them in a reputable password manager.",
+        "Never reuse passwords across different sites — one breach exposes them all.",
+        "Passphrases (four random words) are easy to remember and very strong."
+      ],
+      "followups": [
+        "Should I use a password manager?",
+        "How long should a password be?",
+        "What makes a password strong?"
+      ]
+    },
+    {
+      "topicKey": "phishing",
+      "keywords": ["phish", "phishing", "suspicious email", "fake email"],
+      "replies": [
+        "Phishing emails often look legitimate. Don't click links or download attachments from unknown senders.",
+        "If an email asks for credentials or money, verify by contacting the company directly — not via the email link.",
+        "Be cautious of urgent or threatening language — it's a classic phishing tactic.",
+        "Hover over links to see the real URL before clicking."
+      ],
+      "followups": [
+        "How can I identify a phishing email?",
+        "What should I do if I clicked a phishing link?",
+        "Are phone calls phishing too?"
+      ]
+    },
+    {
+      "topicKey": "scam",
+      "keywords": ["scam", "fraud", "scammer", "scammed", "online scam"],
+      "replies": [
+        "If an offer sounds too good to be true, it usually is. Take a moment, verify, and don't act under pressure.",
+        "Common scams use urgency, secrecy, and odd payment methods (gift cards, crypto). Walk away.",
+        "Report scams to your local consumer protection agency to help others.",
+        "Never share verification codes or one-time passwords — legitimate services never ask for them."
+      ],
+      "followups": [
+        "How can I report a scam?",
+        "What are common online scams?",
+        "How do I get my money back?"
+      ]
+    },
+    {
+      "topicKey": "privacy",
+      "keywords": ["privacy", "private", "personal data", "data protection", "gdpr"],
+      "replies": [
+        "Share only what's needed. Review app permissions and revoke ones you don't use.",
+        "Use privacy-friendly browsers and search engines, and consider a tracker blocker.",
+        "Check your social media privacy settings — defaults are usually too open.",
+        "Be wary of free services; if you're not paying, your data often is the product."
+      ],
+      "followups": [
+        "Which browser is best for privacy?",
+        "How do I review app permissions?",
+        "What is GDPR?"
+      ]
+    },
+    {
+      "topicKey": "malware",
+      "keywords": ["malware", "virus", "ransomware", "trojan", "spyware", "infected"],
+      "replies": [
+        "Keep your OS and antivirus up to date. Don't run software from unknown sources.",
+        "Ransomware locks your files for a ransom — back up regularly so you never have to pay.",
+        "If you suspect infection, disconnect from the network and run a full scan.",
+        "Email attachments and pirated software are top malware delivery routes."
+      ],
+      "followups": [
+        "Which antivirus should I use?",
+        "How do I back up safely?",
+        "What does ransomware do?"
+      ]
+    },
+    {
+      "topicKey": "wifi",
+      "keywords": ["wifi", "wi-fi", "public wifi", "router", "wireless network"],
+      "replies": [
+        "Public Wi-Fi is risky — avoid logging into sensitive accounts without a VPN.",
+        "At home, change the router's default admin password and use WPA2 or WPA3.",
+        "Disable WPS on your router — it's a known weakness.",
+        "Consider a guest network for visitors and IoT devices."
+      ],
+      "followups": [
+        "What is WPA3?",
+        "Do I need a VPN at home?",
+        "How do I secure my router?"
+      ]
+    },
+    {
+      "topicKey": "2fa",
+      "keywords": ["two factor", "2fa", "two-factor authentication", "multi-factor", "mfa", "authenticator"],
+      "replies": [
+        "Two-factor authentication adds a critical layer of security beyond passwords.",
+        "Authenticator apps and hardware keys are safer than SMS codes.",
+        "Enable 2FA on every account that supports it — especially email and banking.",
+        "Save your backup codes somewhere safe in case you lose your device."
+      ],
+      "followups": [
+        "How do I set up 2FA?",
+        "Is SMS 2FA safe?",
+        "What if I lose my 2FA device?"
+      ]
+    },
+    {
+      "topicKey": "browsing",
+      "keywords": ["browse", "browsing", "safe browsing", "browser", "internet safety", "web security", "https"],
+      "replies": [
+        "Keep your browser and extensions updated, and avoid plain http sites for sensitive activity.",
+        "Use HTTPS, watch for the padlock, and verify domain names carefully.",
+        "Limit your extensions — each one is a potential attack surface.",
+        "Ad and script blockers reduce malicious ad and tracker exposure."
+      ],
+      "followups": [
+        "What is HTTPS?",
+        "Should I use ad blockers?",
+        "How do I know if a website is safe?"
+      ]
+    },
+    {
+      "topicKey": "updates",
+      "keywords": ["update", "software update", "patch", "security update", "system update"],
+      "replies": [
+        "Updates patch security holes — install them quickly, especially OS and browser updates.",
+        "Enable automatic updates wherever you can.",
+        "Outdated software is one of the most common ways attackers get in.",
+        "Don't forget to update phones, routers, and IoT devices, not just laptops."
+      ],
+      "followups": [
+        "How do I enable automatic updates?",
+        "Are updates safe to install?",
+        "What if updates break things?"
+      ]
+    },
+    {
+      "topicKey": "social engineering",
+      "keywords": ["social engineering", "manipulation", "pretexting", "vishing", "smishing", "impersonation"],
+      "replies": [
+        "Social engineering tricks people, not computers. Slow down and verify requests, even from 'trusted' sources.",
+        "Watch for urgency, authority, secrecy — classic manipulation tactics.",
+        "If someone calls claiming to be IT or your bank, hang up and call back via the official number.",
+        "Train yourself to pause before clicking, replying, or paying."
+      ],
+      "followups": [
+        "What is vishing?",
+        "How do I verify a caller?",
+        "What is pretexting?"
+      ]
+    }
+  ]
+}
