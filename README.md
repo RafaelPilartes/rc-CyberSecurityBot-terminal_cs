@@ -129,3 +129,54 @@ dotnet build .\CyberSecurityBot.sln -c Debug
 ### Manual Test Plan
 
 See [`TESTING.md`](TESTING.md).
+
+---
+
+## 📚 References & Research
+
+The following resources were consulted during the development of Parts 1 and 2.
+
+### Microsoft Official Documentation
+
+- WPF overview and getting started — https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/
+- Data binding in WPF — https://learn.microsoft.com/en-us/dotnet/desktop/wpf/data/data-binding-overview
+- `ObservableCollection<T>` class — https://learn.microsoft.com/en-us/dotnet/api/system.collections.objectmodel.observablecollection-1
+- `INotifyPropertyChanged` interface — https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged
+- `ICommand` and the command pattern in WPF — https://learn.microsoft.com/en-us/dotnet/api/system.windows.input.icommand
+- `IValueConverter` interface — https://learn.microsoft.com/en-us/dotnet/api/system.windows.data.ivalueconverter
+- The MVVM pattern — https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm
+- `System.Media.SoundPlayer` (WAV playback) — https://learn.microsoft.com/en-us/dotnet/api/system.media.soundplayer
+- C# delegates (`Action`, `Func`) — https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/
+- C# generic collections — https://learn.microsoft.com/en-us/dotnet/standard/generics/collections
+- Regular expressions in .NET — https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions
+- SDK-style project format — https://learn.microsoft.com/en-us/dotnet/core/project-sdk/overview
+
+### YouTube Tutorials
+
+- IAmTimCorey — _WPF Tutorial: Build a Real World Application from Scratch_ — https://www.youtube.com/watch?v=Vjldip84CXQ
+- IAmTimCorey — _Intro to WPF: Learn the Basics and Best Practices_ — https://www.youtube.com/watch?v=gSfMNjWNoX0
+- Brian Lagunas — _MVVM Made Simple in WPF_ — https://www.youtube.com/@BrianLagunas
+- Programming with Mosh — _C# Tutorial for Beginners_ — https://www.youtube.com/watch?v=gfkTfcpWqAY
+
+### Articles and Blog Posts
+
+- Josh Smith — _WPF Apps With The Model-View-ViewModel Design Pattern_ (MSDN Magazine, the classic MVVM article) — https://learn.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern
+- Newtonsoft.Json documentation — https://www.newtonsoft.com/json/help/html/Introduction.htm
+- _How to handle exceptions globally in WPF_ — https://wpf-tutorial.com/wpf-application/handling-exceptions/
+- _Difference between Action<T> and Func<T>_ — https://stackoverflow.com/questions/4317479/func-vs-action-vs-predicate
+
+### AI Assistance
+
+- **ChatGPT (GPT-4)** — used as a brainstorming partner for the MVVM composition root, for explaining the difference between `ShutdownMode.OnLastWindowClose` and `OnExplicitShutdown` in WPF, and for sanity-checking regex patterns used in `MemoryStore.CaptureFacts`.
+
+### Cybersecurity Content (for the response set)
+
+- NCSC UK — _Top Tips for Staying Secure Online_ — https://www.ncsc.gov.uk/cyberaware/home
+- StaySafeOnline.org — phishing and scam awareness — https://staysafeonline.org/
+- Have I Been Pwned — password breach awareness — https://haveibeenpwned.com/
+- OWASP Top 10 — https://owasp.org/Top10/
+- Mozilla — _Privacy Not Included_ — https://foundation.mozilla.org/en/privacynotincluded/
+
+---
+
+🧑‍💻 **Author:** ST10465622 — Rafael Pilartes
