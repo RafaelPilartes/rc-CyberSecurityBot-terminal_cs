@@ -68,7 +68,7 @@ The `User` model utilizes C# automatic properties to store and retrieve interact
 ### Running the App
 1. Clone the repository:
    ```bash
-   git clone https://github.com/[your-username]/CyberSecurityBot.git
+   git clone https://github.com/RafaelPilartes/rc-CyberSecurityBot-terminal_cs
 ````
 
 2. Navigate to the project directory:
@@ -93,3 +93,39 @@ The `User` model utilizes C# automatic properties to store and retrieve interact
 🧑‍💻 Author
 
 ST10465622 - Rafael Pilartes
+
+---
+
+## Part 2 — WPF GUI
+
+Part 2 wraps the chatbot in a WPF desktop application with a hacker-terminal theme (neon green on dark background). The Part 1 console app remains intact under `CyberSecurityBot/` and is preserved by the `v1.0` git tag.
+
+### Solution Structure
+
+```
+CyberSecurityBot.sln
+├── CyberSecurityBot/          # Part 1 console (.exe) — intact
+├── CyberSecurityBot.Core/     # UI-independent chatbot logic (.dll)
+└── CyberSecurityBot.Wpf/      # WPF App (.exe)
+```
+
+### Build & Run
+
+```powershell
+dotnet build .\CyberSecurityBot.sln -c Debug
+.\CyberSecurityBot.Wpf\bin\Debug\net472\CyberSecurityBot.Wpf.exe
+```
+
+### Features
+
+- 10 cybersecurity topics with multi-reply random selection
+- Follow-up handling (`tell me more`, `another tip`, `more`)
+- Persistent memory (name + favourite topic) saved to `%AppData%\CyberSecurityBot\user_memory.json`
+- Sentiment detection — empathetic line + relevant tip in a single message
+- Input validation (empty / >500 chars) and friendly error handling
+- WAV greeting on startup, ASCII art header
+- `Action<BotMessage>` delegate between Core and UI (engine → ViewModel)
+
+### Manual Test Plan
+
+See [`TESTING.md`](TESTING.md).
