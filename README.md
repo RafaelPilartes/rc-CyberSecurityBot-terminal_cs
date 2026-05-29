@@ -132,50 +132,53 @@ See [`TESTING.md`](TESTING.md).
 
 ---
 
-## 📚 References & Research
+## 📚 References
 
-The following resources were consulted during the development of Parts 1 and 2.
+The following resources were consulted during the development of Parts 1 and 2. References are presented in IEEE style and numbered in order of citation.
 
-### Microsoft Official Documentation
+[1] Microsoft, "Windows Presentation Foundation (WPF) overview," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/. [Accessed: 19-May-2026].
 
-- WPF overview and getting started — https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/
-- Data binding in WPF — https://learn.microsoft.com/en-us/dotnet/desktop/wpf/data/data-binding-overview
-- `ObservableCollection<T>` class — https://learn.microsoft.com/en-us/dotnet/api/system.collections.objectmodel.observablecollection-1
-- `INotifyPropertyChanged` interface — https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged
-- `ICommand` and the command pattern in WPF — https://learn.microsoft.com/en-us/dotnet/api/system.windows.input.icommand
-- `IValueConverter` interface — https://learn.microsoft.com/en-us/dotnet/api/system.windows.data.ivalueconverter
-- The MVVM pattern — https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm
-- `System.Media.SoundPlayer` (WAV playback) — https://learn.microsoft.com/en-us/dotnet/api/system.media.soundplayer
-- C# delegates (`Action`, `Func`) — https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/
-- C# generic collections — https://learn.microsoft.com/en-us/dotnet/standard/generics/collections
-- Regular expressions in .NET — https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions
-- SDK-style project format — https://learn.microsoft.com/en-us/dotnet/core/project-sdk/overview
+[2] Microsoft, "Data binding overview (WPF .NET)," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/data/data-binding-overview. [Accessed: 20-May-2026].
 
-### YouTube Tutorials
+[3] Microsoft, "ObservableCollection<T> Class," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/api/system.collections.objectmodel.observablecollection-1. [Accessed: 20-May-2026].
 
-- IAmTimCorey — _WPF Tutorial: Build a Real World Application from Scratch_ — https://www.youtube.com/watch?v=Vjldip84CXQ
-- IAmTimCorey — _Intro to WPF: Learn the Basics and Best Practices_ — https://www.youtube.com/watch?v=gSfMNjWNoX0
-- Brian Lagunas — _MVVM Made Simple in WPF_ — https://www.youtube.com/@BrianLagunas
-- Programming with Mosh — _C# Tutorial for Beginners_ — https://www.youtube.com/watch?v=gfkTfcpWqAY
+[4] Microsoft, "INotifyPropertyChanged Interface," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged. [Accessed: 21-May-2026].
 
-### Articles and Blog Posts
+[5] Microsoft, "ICommand Interface," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/api/system.windows.input.icommand. [Accessed: 21-May-2026].
 
-- Josh Smith — _WPF Apps With The Model-View-ViewModel Design Pattern_ (MSDN Magazine, the classic MVVM article) — https://learn.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern
-- Newtonsoft.Json documentation — https://www.newtonsoft.com/json/help/html/Introduction.htm
-- _How to handle exceptions globally in WPF_ — https://wpf-tutorial.com/wpf-application/handling-exceptions/
-- _Difference between Action<T> and Func<T>_ — https://stackoverflow.com/questions/4317479/func-vs-action-vs-predicate
+[6] Microsoft, "IValueConverter Interface," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/api/system.windows.data.ivalueconverter. [Accessed: 22-May-2026].
 
-### AI Assistance
+[7] Microsoft, "Model-View-ViewModel (MVVM)," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm. [Accessed: 19-May-2026].
 
-- **ChatGPT (GPT-4)** — used as a brainstorming partner for the MVVM composition root, for explaining the difference between `ShutdownMode.OnLastWindowClose` and `OnExplicitShutdown` in WPF, and for sanity-checking regex patterns used in `MemoryStore.CaptureFacts`.
+[8] Microsoft, "SoundPlayer Class," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/api/system.media.soundplayer. [Accessed: 23-May-2026].
 
-### Cybersecurity Content (for the response set)
+[9] Microsoft, "Delegates (C# Programming Guide)," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/. [Accessed: 24-May-2026].
 
-- NCSC UK — _Top Tips for Staying Secure Online_ — https://www.ncsc.gov.uk/cyberaware/home
-- StaySafeOnline.org — phishing and scam awareness — https://staysafeonline.org/
-- Have I Been Pwned — password breach awareness — https://haveibeenpwned.com/
-- OWASP Top 10 — https://owasp.org/Top10/
-- Mozilla — _Privacy Not Included_ — https://foundation.mozilla.org/en/privacynotincluded/
+[10] Microsoft, "Collections (C# and .NET)," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/standard/generics/collections. [Accessed: 22-May-2026].
+
+[11] Microsoft, "Regular expressions in .NET," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions. [Accessed: 23-May-2026].
+
+[12] Microsoft, ".NET project SDK overview," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/core/project-sdk/overview. [Accessed: 25-May-2026].
+
+[13] J. Smith, "WPF Apps With The Model-View-ViewModel Design Pattern," *MSDN Magazine*, Feb. 2009. [Online]. Available: https://learn.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern. [Accessed: 20-May-2026].
+
+[14] Newtonsoft, "Json.NET Documentation," *Newtonsoft*, 2023. [Online]. Available: https://www.newtonsoft.com/json/help/html/Introduction.htm. [Accessed: 21-May-2026].
+
+[15] IAmTimCorey, "WPF Tutorial: Build a Real World Application from Scratch," *YouTube*, 2020. [Online]. Available: https://www.youtube.com/watch?v=Vjldip84CXQ. [Accessed: 24-May-2026].
+
+[16] IAmTimCorey, "Intro to WPF: Learn the Basics and Best Practices," *YouTube*, 2021. [Online]. Available: https://www.youtube.com/watch?v=gSfMNjWNoX0. [Accessed: 25-May-2026].
+
+[17] Programming with Mosh, "C# Tutorial for Beginners," *YouTube*, 2019. [Online]. Available: https://www.youtube.com/watch?v=gfkTfcpWqAY. [Accessed: 19-May-2026].
+
+[18] OpenAI, *ChatGPT (GPT-4)*, large language model. [Online]. Available: https://chat.openai.com/. [Accessed: 26-May-2026].
+
+[19] National Cyber Security Centre, "Cyber Aware: Tips to stay secure online," *NCSC*, 2023. [Online]. Available: https://www.ncsc.gov.uk/cyberaware/home. [Accessed: 27-May-2026].
+
+[20] National Cybersecurity Alliance, "Online Safety and Privacy," *StaySafeOnline*, 2023. [Online]. Available: https://staysafeonline.org/. [Accessed: 27-May-2026].
+
+[21] T. Hunt, "Have I Been Pwned: Check if your email has been compromised in a data breach," 2023. [Online]. Available: https://haveibeenpwned.com/. [Accessed: 28-May-2026].
+
+[22] OWASP Foundation, "OWASP Top 10," *OWASP*, 2021. [Online]. Available: https://owasp.org/Top10/. [Accessed: 28-May-2026].
 
 ---
 
