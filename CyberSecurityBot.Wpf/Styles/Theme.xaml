@@ -1,0 +1,43 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="BackgroundColor">#FF0D0208</Color>
+    <Color x:Key="PrimaryColor">#FF00FF41</Color>
+    <Color x:Key="UserBubbleColor">#FF1A2330</Color>
+    <Color x:Key="BotBubbleColor">#FF0A2A0A</Color>
+    <Color x:Key="SystemBubbleColor">#FF3A2A0A</Color>
+    <Color x:Key="UserForegroundColor">#FFE0E0E0</Color>
+    <Color x:Key="SystemForegroundColor">#FFFFB000</Color>
+
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+    <SolidColorBrush x:Key="UserBubbleBrush" Color="{StaticResource UserBubbleColor}"/>
+    <SolidColorBrush x:Key="BotBubbleBrush" Color="{StaticResource BotBubbleColor}"/>
+    <SolidColorBrush x:Key="SystemBubbleBrush" Color="{StaticResource SystemBubbleColor}"/>
+    <SolidColorBrush x:Key="UserForegroundBrush" Color="{StaticResource UserForegroundColor}"/>
+    <SolidColorBrush x:Key="SystemForegroundBrush" Color="{StaticResource SystemForegroundColor}"/>
+
+    <FontFamily x:Key="MonoFont">Consolas</FontFamily>
+
+    <Style x:Key="ChatTextBox" TargetType="TextBox">
+        <Setter Property="Background" Value="#FF111111"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="FontFamily" Value="{StaticResource MonoFont}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="CaretBrush" Value="{StaticResource PrimaryBrush}"/>
+    </Style>
+
+    <Style x:Key="SendButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="#FF0D0208"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="16,8"/>
+        <Setter Property="FontFamily" Value="{StaticResource MonoFont}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+
+</ResourceDictionary>
