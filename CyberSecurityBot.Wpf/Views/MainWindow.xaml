@@ -1,8 +1,60 @@
 <Window x:Class="CyberSecurityBot.Wpf.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Cyber Bot" Height="600" Width="800">
-    <Grid>
-        <TextBlock Text="Cyber Bot — scaffolding" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        xmlns:views="clr-namespace:CyberSecurityBot.Wpf.Views"
+        Title="Cyber Bot — Cybersecurity Awareness Assistant"
+        Height="720" Width="900" MinHeight="500" MinWidth="600"
+        Background="{StaticResource BackgroundBrush}">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#FF050505" Padding="12" CornerRadius="8">
+            <StackPanel>
+                <TextBlock x:Name="AsciiArtBlock"
+                           FontFamily="{StaticResource MonoFont}"
+                           FontSize="10"
+                           Foreground="{StaticResource PrimaryBrush}"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"/>
+                <TextBlock Text="CYBER BOT — Cybersecurity Awareness Assistant"
+                           FontFamily="{StaticResource MonoFont}"
+                           FontSize="14"
+                           Foreground="{StaticResource PrimaryBrush}"
+                           HorizontalAlignment="Center"
+                           Margin="0,6,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <ScrollViewer x:Name="ChatScroll" Grid.Row="1" Margin="0,12" VerticalScrollBarVisibility="Auto"
+                      Background="#FF111111">
+            <ItemsControl x:Name="MessagesList" ItemsSource="{Binding Messages}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <views:MessageBubble/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="InputBox" Grid.Column="0"
+                     Style="{StaticResource ChatTextBox}"
+                     Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="500"
+                     KeyDown="InputBox_KeyDown"/>
+            <Button Grid.Column="1"
+                    Content="Send"
+                    Margin="8,0,0,0"
+                    Style="{StaticResource SendButton}"
+                    Command="{Binding SendCommand}"/>
+        </Grid>
     </Grid>
 </Window>
