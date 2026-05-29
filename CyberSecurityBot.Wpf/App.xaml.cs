@@ -15,6 +15,8 @@ namespace CyberSecurityBot.Wpf
         {
             base.OnStartup(e);
 
+            ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
             DispatcherUnhandledException += OnDispatcherUnhandledException;
             AppDomain.CurrentDomain.UnhandledException += OnDomainUnhandledException;
 
@@ -60,6 +62,8 @@ namespace CyberSecurityBot.Wpf
             var window = new MainWindow(vm, asciiPath);
             MainWindow = window;
             window.Show();
+
+            ShutdownMode = ShutdownMode.OnMainWindowClose;
         }
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
