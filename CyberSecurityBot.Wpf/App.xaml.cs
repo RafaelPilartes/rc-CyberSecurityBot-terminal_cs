@@ -87,7 +87,7 @@ namespace CyberSecurityBot.Wpf
             var chatVm = new ChatViewModel(engine);
             var tasksVm = new TasksViewModel(taskRepository, activityLog);
             tasksVm.Load();
-            var quizVm = new QuizViewModel();
+            var quizVm = new QuizViewModel(new QuizBank(), activityLog, rng);
             var logVm = new ActivityLogViewModel(activityLog);
             var vm = new MainViewModel(chatVm, tasksVm, quizVm, logVm);
 
