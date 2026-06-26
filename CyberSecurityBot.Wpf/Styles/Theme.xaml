@@ -40,4 +40,27 @@
         <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
+    <!-- Hacker-terminal tab headers -->
+    <Style x:Key="TerminalTabItem" TargetType="TabItem">
+        <Setter Property="FontFamily" Value="{StaticResource MonoFont}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Border x:Name="Root" Background="#FF111111"
+                            BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1,1,1,0"
+                            Margin="0,0,4,0" Padding="14,8" CornerRadius="6,6,0,0">
+                        <ContentPresenter ContentSource="Header"
+                                          TextBlock.Foreground="{StaticResource PrimaryBrush}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Root" Property="Background" Value="{StaticResource BotBubbleBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

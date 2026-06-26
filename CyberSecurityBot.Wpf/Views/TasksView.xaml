@@ -1,0 +1,75 @@
+<UserControl x:Class="CyberSecurityBot.Wpf.Views.TasksView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Add-task form (structure only) -->
+        <Border Grid.Row="0" Background="#FF111111" Padding="12" CornerRadius="6" Margin="0,0,0,12"
+                BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Title" Margin="0,0,8,6"
+                           Foreground="{StaticResource PrimaryBrush}" FontFamily="{StaticResource MonoFont}"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="0,0,0,6"
+                         Style="{StaticResource ChatTextBox}"
+                         Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Description" Margin="0,0,8,6"
+                           Foreground="{StaticResource PrimaryBrush}" FontFamily="{StaticResource MonoFont}"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,6"
+                         Style="{StaticResource ChatTextBox}"
+                         Text="{Binding NewDescription, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Reminder" Margin="0,0,8,6"
+                           Foreground="{StaticResource PrimaryBrush}" FontFamily="{StaticResource MonoFont}"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,6"
+                         Style="{StaticResource ChatTextBox}"
+                         Text="{Binding NewReminder, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Reminder date" Margin="0,0,8,6"
+                           Foreground="{StaticResource PrimaryBrush}" FontFamily="{StaticResource MonoFont}"
+                           VerticalAlignment="Center"/>
+                <DatePicker Grid.Row="3" Grid.Column="1" Margin="0,0,0,6"
+                            SelectedDate="{Binding NewReminderDate}"/>
+
+                <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"
+                        Content="Add Task" Style="{StaticResource SendButton}"
+                        Command="{Binding AddCommand}"/>
+            </Grid>
+        </Border>
+
+        <!-- Task list (structure only) -->
+        <ListView Grid.Row="1" ItemsSource="{Binding Tasks}" Background="#FF111111"
+                  BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"
+                  Foreground="{StaticResource PrimaryBrush}" FontFamily="{StaticResource MonoFont}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Done" Width="50"/>
+                    <GridViewColumn Header="Title" Width="180" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Description" Width="240" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Reminder" Width="160" DisplayMemberBinding="{Binding Reminder}"/>
+                    <GridViewColumn Header="Reminder Date" Width="140" DisplayMemberBinding="{Binding ReminderDate}"/>
+                    <GridViewColumn Header="Actions" Width="160"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using CyberSecurityBot.Core.Services;
+using CyberSecurityBot.Core.Services.Data;
 using CyberSecurityBot.Wpf.ViewModels;
 using CyberSecurityBot.Wpf.Views;
 
@@ -24,6 +25,7 @@ namespace CyberSecurityBot.Wpf
             string responsesPath = Path.Combine(baseDir, "Assets", "responses.json");
             string wavPath = Path.Combine(baseDir, "Assets", "greeting.wav");
             string asciiPath = Path.Combine(baseDir, "Assets", "AsciiArt.txt");
+            string dbConfigPath = Path.Combine(baseDir, "Assets", "dbconfig.json");
 
             ResponseRepository repository;
             try
@@ -57,7 +59,17 @@ namespace CyberSecurityBot.Wpf
             }
 
             var engine = new ChatEngine(repository, matcher, sentiment, context, memory, rng);
-            var vm = new ChatViewModel(engine);
+
+            // Database layer (Part 3). Connection string is loaded from a config
+            // file so it is never hardcoded in the middle of the code.
+            var dbConfig = DatabaseConfig.Load(dbConfigPath);
+            var taskRepository = new TaskRepository(dbConfig);
+
+            var chatVm = new ChatViewModel(engine);
+            var tasksVm = new TasksViewModel(taskRepository);
+            var quizVm = new QuizViewModel();
+            var logVm = new ActivityLogViewModel();
+            var vm = new MainViewModel(chatVm, tasksVm, quizVm, logVm);
 
             var window = new MainWindow(vm, asciiPath);
             MainWindow = window;

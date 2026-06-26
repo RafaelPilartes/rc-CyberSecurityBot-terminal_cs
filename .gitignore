@@ -9,3 +9,6 @@
 
 # Audio assets (if you don't want to track large binaries, but for university it's usually fine)
 # Assets/*.wav
+
+instraction/
+docs/
