@@ -65,8 +65,24 @@ namespace CyberSecurityBot.Wpf
             var dbConfig = DatabaseConfig.Load(dbConfigPath);
             var taskRepository = new TaskRepository(dbConfig);
 
+            // Create the database/table if needed. Wrapped so the app still
+            // launches (chat/quiz/log keep working) when MySQL is not running.
+            try
+            {
+                new DatabaseInitializer(dbConfig).EnsureCreated();
+            }
+            catch (Exception dbEx)
+            {
+                MessageBox.Show(
+                    "Could not reach the database (is MySQL running in XAMPP?).\n\n" +
+                    "The Tasks tab will be unavailable, but the rest of the app works.\n\n" +
+                    dbEx.Message,
+                    "Cyber Bot", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
             var chatVm = new ChatViewModel(engine);
             var tasksVm = new TasksViewModel(taskRepository);
+            tasksVm.Load();
             var quizVm = new QuizViewModel();
             var logVm = new ActivityLogViewModel();
             var vm = new MainViewModel(chatVm, tasksVm, quizVm, logVm);

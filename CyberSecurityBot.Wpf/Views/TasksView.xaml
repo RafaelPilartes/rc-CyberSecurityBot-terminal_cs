@@ -4,10 +4,11 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Add-task form (structure only) -->
+        <!-- Add-task form -->
         <Border Grid.Row="0" Background="#FF111111" Padding="12" CornerRadius="6" Margin="0,0,0,12"
                 BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
             <Grid>
@@ -47,7 +48,7 @@
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Reminder date" Margin="0,0,8,6"
                            Foreground="{StaticResource PrimaryBrush}" FontFamily="{StaticResource MonoFont}"
                            VerticalAlignment="Center"/>
-                <DatePicker Grid.Row="3" Grid.Column="1" Margin="0,0,0,6"
+                <DatePicker Grid.Row="3" Grid.Column="1" Margin="0,0,0,6" HorizontalAlignment="Left" Width="200"
                             SelectedDate="{Binding NewReminderDate}"/>
 
                 <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"
@@ -56,18 +57,44 @@
             </Grid>
         </Border>
 
-        <!-- Task list (structure only) -->
-        <ListView Grid.Row="1" ItemsSource="{Binding Tasks}" Background="#FF111111"
+        <!-- Status message -->
+        <TextBlock Grid.Row="1" Text="{Binding StatusMessage}" TextWrapping="Wrap"
+                   Foreground="{StaticResource SystemForegroundBrush}" FontFamily="{StaticResource MonoFont}"
+                   Margin="0,0,0,8"/>
+
+        <!-- Task list -->
+        <ListView Grid.Row="2" ItemsSource="{Binding Tasks}" Background="#FF111111"
                   BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"
                   Foreground="{StaticResource PrimaryBrush}" FontFamily="{StaticResource MonoFont}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Done" Width="50"/>
+                    <GridViewColumn Header="Done" Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding IsComplete}" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="Title" Width="180" DisplayMemberBinding="{Binding Title}"/>
-                    <GridViewColumn Header="Description" Width="240" DisplayMemberBinding="{Binding Description}"/>
-                    <GridViewColumn Header="Reminder" Width="160" DisplayMemberBinding="{Binding Reminder}"/>
-                    <GridViewColumn Header="Reminder Date" Width="140" DisplayMemberBinding="{Binding ReminderDate}"/>
-                    <GridViewColumn Header="Actions" Width="160"/>
+                    <GridViewColumn Header="Description" Width="220" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Reminder" Width="140" DisplayMemberBinding="{Binding Reminder}"/>
+                    <GridViewColumn Header="Reminder Date" Width="130" DisplayMemberBinding="{Binding ReminderDate}"/>
+                    <GridViewColumn Header="Actions" Width="170">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Done" Margin="0,0,6,0" Padding="8,2"
+                                            Command="{Binding DataContext.CompleteCommand,
+                                                      RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding}"/>
+                                    <Button Content="Delete" Padding="8,2"
+                                            Command="{Binding DataContext.DeleteCommand,
+                                                      RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
