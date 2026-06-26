@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using CyberSecurityBot.Core.Models;
 using CyberSecurityBot.Core.Services;
@@ -87,17 +88,35 @@ namespace CyberSecurityBot.Wpf.ViewModels
 
         private void Add()
         {
+            var created = AddTask(NewTitle, NewDescription, NewReminder, NewReminderDate);
+            if (created != null)
+            {
+                NewTitle = string.Empty;
+                NewDescription = string.Empty;
+                NewReminder = string.Empty;
+                NewReminderDate = null;
+            }
+        }
+
+        /// <summary>
+        /// Adds a task (used both by the form and by the NLP chat commands).
+        /// Returns the created task, or null if it could not be saved.
+        /// </summary>
+        public CyberTask AddTask(string title, string description = null,
+                                 string reminder = null, DateTime? reminderDate = null)
+        {
+            if (string.IsNullOrWhiteSpace(title)) return null;
             try
             {
                 var task = new CyberTask
                 {
-                    Title = NewTitle.Trim(),
-                    Description = string.IsNullOrWhiteSpace(NewDescription) ? null : NewDescription.Trim(),
-                    Reminder = string.IsNullOrWhiteSpace(NewReminder) ? null : NewReminder.Trim(),
-                    ReminderDate = NewReminderDate,
+                    Title = title.Trim(),
+                    Description = string.IsNullOrWhiteSpace(description) ? null : description.Trim(),
+                    Reminder = string.IsNullOrWhiteSpace(reminder) ? null : reminder.Trim(),
+                    ReminderDate = reminderDate,
                     IsComplete = false
                 };
-                _repository.Add(task);
+                task.Id = _repository.Add(task);
 
                 _log?.Record($"Task added: \"{task.Title}\"");
                 if (task.ReminderDate.HasValue || !string.IsNullOrWhiteSpace(task.Reminder))
@@ -105,32 +124,40 @@ namespace CyberSecurityBot.Wpf.ViewModels
                     _log?.Record($"Reminder set for task: \"{task.Title}\"");
                 }
 
-                NewTitle = string.Empty;
-                NewDescription = string.Empty;
-                NewReminder = string.Empty;
-                NewReminderDate = null;
-
                 Load();
+                return task;
             }
             catch (Exception ex)
             {
                 StatusMessage = "Could not add the task: " + ex.Message;
+                return null;
+            }
+        }
+
+        /// <summary>Marks a task complete by id. Returns false if not found / failed.</summary>
+        public bool CompleteById(int id)
+        {
+            try
+            {
+                Load();
+                if (Tasks.All(t => t.Id != id)) return false;
+
+                _repository.MarkComplete(id);
+                _log?.Record($"Task marked complete (id {id})");
+                Load();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = "Could not update the task: " + ex.Message;
+                return false;
             }
         }
 
         private void Complete(CyberTask task)
         {
             if (task == null) return;
-            try
-            {
-                _repository.MarkComplete(task.Id);
-                _log?.Record($"Task marked complete (id {task.Id})");
-                Load();
-            }
-            catch (Exception ex)
-            {
-                StatusMessage = "Could not update the task: " + ex.Message;
-            }
+            CompleteById(task.Id);
         }
 
         private void Delete(CyberTask task)

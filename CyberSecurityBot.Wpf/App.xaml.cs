@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Threading;
 using CyberSecurityBot.Core.Services;
 using CyberSecurityBot.Core.Services.Data;
+using CyberSecurityBot.Core.Services.Nlp;
 using CyberSecurityBot.Wpf.ViewModels;
 using CyberSecurityBot.Wpf.Views;
 
@@ -84,12 +85,18 @@ namespace CyberSecurityBot.Wpf
                     "Cyber Bot", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
-            var chatVm = new ChatViewModel(engine);
             var tasksVm = new TasksViewModel(taskRepository, activityLog);
             tasksVm.Load();
             var quizVm = new QuizViewModel(new QuizBank(), activityLog, rng);
             var logVm = new ActivityLogViewModel(activityLog);
+
+            // Chat is the front controller: it runs the NLP recogniser and can act
+            // on the other tabs (tasks, quiz, log) and switch between them.
+            var recognizer = new IntentRecognizer();
+            var chatVm = new ChatViewModel(engine, recognizer, tasksVm, quizVm, activityLog);
+
             var vm = new MainViewModel(chatVm, tasksVm, quizVm, logVm);
+            chatVm.NavigateToTab = index => vm.SelectedTabIndex = index;
 
             var window = new MainWindow(vm, asciiPath);
             MainWindow = window;

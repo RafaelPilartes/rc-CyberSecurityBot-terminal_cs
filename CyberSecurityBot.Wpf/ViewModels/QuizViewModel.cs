@@ -65,7 +65,8 @@ namespace CyberSecurityBot.Wpf.ViewModels
             RestartCommand = new RelayCommand(_ => Start());
         }
 
-        private void Start()
+        /// <summary>Starts (or restarts) the quiz. Public so the NLP chat command can trigger it.</summary>
+        public void Start()
         {
             _questions = _bank.GetQuestions().OrderBy(_ => _rng.Next()).ToList();
             _index = 0;
