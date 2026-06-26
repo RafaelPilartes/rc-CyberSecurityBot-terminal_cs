@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CyberSecurityBot.Core.Models;
+using CyberSecurityBot.Core.Services;
 using CyberSecurityBot.Core.Services.Data;
 
 namespace CyberSecurityBot.Wpf.ViewModels
@@ -13,6 +14,7 @@ namespace CyberSecurityBot.Wpf.ViewModels
     public class TasksViewModel : ViewModelBase
     {
         private readonly TaskRepository _repository;
+        private readonly ActivityLog _log;
 
         private string _newTitle = string.Empty;
         private string _newDescription = string.Empty;
@@ -56,9 +58,10 @@ namespace CyberSecurityBot.Wpf.ViewModels
         public ICommand CompleteCommand { get; }
         public ICommand DeleteCommand { get; }
 
-        public TasksViewModel(TaskRepository repository)
+        public TasksViewModel(TaskRepository repository, ActivityLog log)
         {
             _repository = repository;
+            _log = log;
             AddCommand = new RelayCommand(_ => Add(), _ => !string.IsNullOrWhiteSpace(NewTitle));
             CompleteCommand = new RelayCommand(p => Complete(p as CyberTask));
             DeleteCommand = new RelayCommand(p => Delete(p as CyberTask));
@@ -96,6 +99,12 @@ namespace CyberSecurityBot.Wpf.ViewModels
                 };
                 _repository.Add(task);
 
+                _log?.Record($"Task added: \"{task.Title}\"");
+                if (task.ReminderDate.HasValue || !string.IsNullOrWhiteSpace(task.Reminder))
+                {
+                    _log?.Record($"Reminder set for task: \"{task.Title}\"");
+                }
+
                 NewTitle = string.Empty;
                 NewDescription = string.Empty;
                 NewReminder = string.Empty;
@@ -115,6 +124,7 @@ namespace CyberSecurityBot.Wpf.ViewModels
             try
             {
                 _repository.MarkComplete(task.Id);
+                _log?.Record($"Task marked complete (id {task.Id})");
                 Load();
             }
             catch (Exception ex)
@@ -129,6 +139,7 @@ namespace CyberSecurityBot.Wpf.ViewModels
             try
             {
                 _repository.Delete(task.Id);
+                _log?.Record($"Task deleted (id {task.Id})");
                 Load();
             }
             catch (Exception ex)

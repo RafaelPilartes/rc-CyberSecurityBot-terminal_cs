@@ -13,6 +13,7 @@ namespace CyberSecurityBot.Core.Services
         private readonly SentimentDetector _sentiment;
         private readonly ConversationContext _context;
         private readonly MemoryStore _memory;
+        private readonly ActivityLog _log;
         private readonly Random _rng;
 
         public Action<BotMessage> OnSystemNotice { get; set; }
@@ -23,6 +24,7 @@ namespace CyberSecurityBot.Core.Services
             SentimentDetector sentiment,
             ConversationContext context,
             MemoryStore memory,
+            ActivityLog log = null,
             Random rng = null)
         {
             _repository = repository;
@@ -30,6 +32,7 @@ namespace CyberSecurityBot.Core.Services
             _sentiment = sentiment;
             _context = context;
             _memory = memory;
+            _log = log;
             _rng = rng ?? new Random();
         }
 
@@ -45,6 +48,12 @@ namespace CyberSecurityBot.Core.Services
         {
             try
             {
+                // Decision flow step 1: is this a request to see the activity log?
+                if (IsActivityLogCommand(input))
+                {
+                    return BuildActivityLogMessage();
+                }
+
                 string emotion = _sentiment.Detect(input);
 
                 string prevName = _memory.Memory.Name;
@@ -71,6 +80,7 @@ namespace CyberSecurityBot.Core.Services
                 {
                     var line = _sentiment.GetEmpathyLine(emotion);
                     if (!string.IsNullOrEmpty(line)) sb.AppendLine(line);
+                    _log?.Record($"Sentiment detected ({emotion}) — gave a supportive response");
                 }
 
                 if (topic == null)
@@ -127,6 +137,7 @@ namespace CyberSecurityBot.Core.Services
 
                     _context.SetTopic(topic);
                     _memory.RecordTopic(topic.topicKey);
+                    _log?.Record($"Recognized topic '{topic.topicKey}' — provided a tip");
                 }
 
                 if (memoryChanged || topic != null) _memory.Save();
@@ -137,6 +148,34 @@ namespace CyberSecurityBot.Core.Services
             {
                 return new BotMessage { Sender = Sender.System, Text = BotResponses.EngineError };
             }
+        }
+
+        private static bool IsActivityLogCommand(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return false;
+            string text = input.ToLowerInvariant();
+            return text.Contains("activity log")
+                || text.Contains("show log")
+                || text.Contains("what have you done")
+                || text.Contains("recent actions")
+                || text.Contains("history");
+        }
+
+        private BotMessage BuildActivityLogMessage()
+        {
+            var recent = _log?.GetRecent(10);
+            if (recent == null || recent.Count == 0)
+            {
+                return new BotMessage { Sender = Sender.Bot, Text = "No activity recorded yet this session." };
+            }
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Here's what I've done recently:");
+            foreach (var entry in recent)
+            {
+                sb.AppendLine($"[{entry.Timestamp:HH:mm:ss}] {entry.Description}");
+            }
+            return new BotMessage { Sender = Sender.Bot, Text = sb.ToString().TrimEnd() };
         }
     }
 }

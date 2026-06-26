@@ -58,7 +58,11 @@ namespace CyberSecurityBot.Wpf
                 memory.Save();
             }
 
-            var engine = new ChatEngine(repository, matcher, sentiment, context, memory, rng);
+            // Shared session activity log (Part 3 Task 4), used by the engine,
+            // the tasks tab and the activity-log tab.
+            var activityLog = new ActivityLog();
+
+            var engine = new ChatEngine(repository, matcher, sentiment, context, memory, activityLog, rng);
 
             // Database layer (Part 3). Connection string is loaded from a config
             // file so it is never hardcoded in the middle of the code.
@@ -81,10 +85,10 @@ namespace CyberSecurityBot.Wpf
             }
 
             var chatVm = new ChatViewModel(engine);
-            var tasksVm = new TasksViewModel(taskRepository);
+            var tasksVm = new TasksViewModel(taskRepository, activityLog);
             tasksVm.Load();
             var quizVm = new QuizViewModel();
-            var logVm = new ActivityLogViewModel();
+            var logVm = new ActivityLogViewModel(activityLog);
             var vm = new MainViewModel(chatVm, tasksVm, quizVm, logVm);
 
             var window = new MainWindow(vm, asciiPath);

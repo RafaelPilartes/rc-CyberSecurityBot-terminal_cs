@@ -17,7 +17,7 @@
                   Foreground="{StaticResource PrimaryBrush}" FontFamily="{StaticResource MonoFont}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Time" Width="120" DisplayMemberBinding="{Binding Timestamp}"/>
+                    <GridViewColumn Header="Time" Width="120" DisplayMemberBinding="{Binding Timestamp, StringFormat=HH:mm:ss}"/>
                     <GridViewColumn Header="Action" Width="520" DisplayMemberBinding="{Binding Description}"/>
                 </GridView>
             </ListView.View>
