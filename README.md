@@ -132,9 +132,72 @@ See [`TESTING.md`](TESTING.md).
 
 ---
 
+## Part 3 — Task Assistant, Quiz, NLP & Activity Log
+
+Part 3 extends the WPF app with four new features, organised behind a `TabControl`
+with four tabs: **Chat**, **Tasks**, **Quiz** and **Activity Log**. All Part 1 and
+Part 2 behaviour continues to work unchanged.
+
+### New Features
+
+1. **Task Assistant (MySQL):** add, list, complete and delete cybersecurity tasks
+   (title, description, optional reminder + date) persisted in a MySQL/MariaDB
+   database via the `MySql.Data` package.
+2. **Quiz mini-game:** 13 questions (multiple-choice and true/false) covering
+   phishing, passwords, safe browsing, social engineering, malware, Wi-Fi and 2FA.
+   Random order, immediate feedback with explanations, final score and restart.
+3. **NLP simulation:** recognises differently phrased requests using
+   `string.Contains()` and per-intent keyword lists, then acts on them
+   (e.g. *"remind me to enable 2FA"* creates a task, *"test me"* starts the quiz).
+4. **Activity Log:** an in-memory, timestamped log of significant actions, shown in
+   its own tab and on request in chat ("show activity log").
+
+### Architecture
+
+- **Navigation:** `MainWindow` hosts a `TabControl`; each tab is a `UserControl`
+  (`ChatView`, `TasksView`, `QuizView`, `ActivityLogView`) bound to its own ViewModel
+  via a root `MainViewModel`.
+- **Data layer (Core):** `DatabaseConfig` (configurable connection string loaded
+  from `Assets/dbconfig.json`), `DatabaseInitializer` (creates the database/table),
+  `TaskRepository` (parameterised CRUD).
+- **NLP (Core):** `IntentRecognizer` classifies the intent and extracts the task
+  title / id. The `ChatViewModel` acts as the front controller for the decision flow
+  (activity-log command → NLP intent → sentiment → keyword → follow-up → fallback).
+
+### Database Setup (XAMPP / MariaDB)
+
+1. Start **MySQL** from the XAMPP Control Panel (default: `localhost:3306`, user
+   `root`, no password).
+2. On first launch the app creates the `cybersecuritybot` database and the `tasks`
+   table automatically. The schema is also in
+   [`CyberSecurityBot.Core/Database/schema.sql`](CyberSecurityBot.Core/Database/schema.sql).
+3. Connection settings are configurable in `CyberSecurityBot.Wpf/Assets/dbconfig.json`
+   — never hardcoded in the code.
+
+> If MySQL is not running, the app still launches and the Chat, Quiz and Activity Log
+> tabs work; only the Tasks tab needs the database.
+
+### Build & Run
+
+```powershell
+dotnet build .\CyberSecurityBot.sln -c Debug
+.\CyberSecurityBot.Wpf\bin\Debug\net472\CyberSecurityBot.Wpf.exe
+```
+
+### Try the NLP Commands (Chat tab)
+
+- `remind me to enable 2FA` — creates a task
+- `add a task to review privacy settings` — creates a task and asks about a reminder
+- `show my tasks` — lists tasks
+- `complete task 1` — marks a task complete
+- `test me` — starts the quiz
+- `what have you done` — shows the activity log
+
+---
+
 ## 📚 References
 
-The following resources were consulted during the development of Parts 1 and 2. References are presented in IEEE style and numbered in order of citation.
+The following resources were consulted during the development of Parts 1, 2 and 3. References are presented in IEEE style and numbered in order of citation.
 
 [1] Microsoft, "Windows Presentation Foundation (WPF) overview," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/. [Accessed: 19-May-2026].
 
@@ -179,6 +242,14 @@ The following resources were consulted during the development of Parts 1 and 2. 
 [21] T. Hunt, "Have I Been Pwned: Check if your email has been compromised in a data breach," 2023. [Online]. Available: https://haveibeenpwned.com/. [Accessed: 28-May-2026].
 
 [22] OWASP Foundation, "OWASP Top 10," *OWASP*, 2021. [Online]. Available: https://owasp.org/Top10/. [Accessed: 28-May-2026].
+
+[23] Oracle, "MySQL Connector/NET Developer Guide," *MySQL Documentation*, 2023. [Online]. Available: https://dev.mysql.com/doc/connector-net/en/. [Accessed: 09-Jun-2026].
+
+[24] Microsoft, "ADO.NET overview," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/. [Accessed: 12-Jun-2026].
+
+[25] MariaDB Foundation, "MariaDB Server Documentation," *MariaDB*, 2023. [Online]. Available: https://mariadb.com/kb/en/documentation/. [Accessed: 16-Jun-2026].
+
+[26] Microsoft, "TabControl Class," *Microsoft Learn*, 2023. [Online]. Available: https://learn.microsoft.com/en-us/dotnet/api/system.windows.controls.tabcontrol. [Accessed: 18-Jun-2026].
 
 ---
 
